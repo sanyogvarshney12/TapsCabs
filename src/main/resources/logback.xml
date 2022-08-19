@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_LOCATION" value="C:/temp/TapsCabs/log.log" />
+
+    <appender name = "CONSOLE" class = "ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd'T'HH:mm:ss.sss'Z'}] [%C] [%t] [%L] [%-5p] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name = "FILE" class = "ch.qos.logback.core.FileAppender">
+        <File>${LOG_LOCATION}</File>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level = "INFO">
+        <appender-ref ref = "FILE"/>
+        <appender-ref ref = "CONSOLE"/>
+    </root>
+
+    <!-- Application logs at trace level -->
+    <logger name="com.travel.tapscabs" level="trace" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+
+</configuration>
