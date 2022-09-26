@@ -1,6 +1,6 @@
 package com.travel.tapscabs.dao;
 
-import com.travel.tapscabs.model.UserDetails;
+import com.travel.tapscabs.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author Sanyog Varshney
  * @version 1.0
  */
-public interface IUserRegistrationDao extends JpaRepository<UserDetails, String> {
+public interface UserRoleDao extends JpaRepository<Role, Long> {
+
+    Role findByName(String name);
 }

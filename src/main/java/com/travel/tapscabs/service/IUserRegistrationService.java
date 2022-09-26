@@ -1,6 +1,6 @@
 package com.travel.tapscabs.service;
 
-import com.travel.tapscabs.model.UserRegistration;
+import com.travel.tapscabs.model.UserDetails;
 
 /**
  * @implNote UserRegistration Service interface
@@ -9,10 +9,10 @@ import com.travel.tapscabs.model.UserRegistration;
  */
 public interface IUserRegistrationService {
 
-    UserRegistration addUser(UserRegistration userRegistration);
+    UserDetails addUser(UserDetails userRegistration);
 
-    UserRegistration fetchUser(String emailId);
+    UserDetails fetchUser(String emailId);
 
-    UserRegistration updateUser(String emailId, String userName, long mobileNo);
+    UserDetails updateUser(String emailId, String userName, long mobileNo);
 
 }

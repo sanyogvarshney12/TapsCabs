@@ -3,7 +3,7 @@ package com.travel.tapscabs.service;
 import com.travel.tapscabs.dao.IUserRegistrationDao;
 import com.travel.tapscabs.exception.UserDoesNotExistException;
 import com.travel.tapscabs.logger.TapsCabsApplicationLogger;
-import com.travel.tapscabs.model.UserRegistration;
+import com.travel.tapscabs.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ import java.util.Optional;
  * @version 1.0
  */
 @Service
-public class UserRegistrationService implements IUserRegistrationService {
+public class UserRegistrationServiceImpl implements IUserRegistrationService {
 
     private TapsCabsApplicationLogger LOG = new TapsCabsApplicationLogger();
-    private static final String CLASSNAME = UserRegistrationService.class.getSimpleName();
+    private static final String CLASSNAME = UserRegistrationServiceImpl.class.getSimpleName();
 
     @Autowired
     private IUserRegistrationDao dao;
@@ -29,7 +29,7 @@ public class UserRegistrationService implements IUserRegistrationService {
      * @return saved UserRegistration object
      */
     @Override
-    public UserRegistration addUser(UserRegistration userRegistration) {
+    public UserDetails addUser(UserDetails userRegistration) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " addUser() ", "Started");
         }
@@ -42,11 +42,11 @@ public class UserRegistrationService implements IUserRegistrationService {
      * @return saved UserRegistration object if exists, else throws UserDoesNotExistException
      */
     @Override
-    public UserRegistration fetchUser(String emailId) {
+    public UserDetails fetchUser(String emailId) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " fetchUser() ", "Started");
         }
-        UserRegistration userRegistration = Optional.of(dao.getById(emailId))
+        UserDetails userRegistration = Optional.of(dao.getById(emailId))
                 .orElseThrow(() -> new UserDoesNotExistException(emailId, "This user does not exiust in the System."));
         return userRegistration;
     }
@@ -59,11 +59,11 @@ public class UserRegistrationService implements IUserRegistrationService {
      * @return updated UserRegistration Object
      */
     @Override
-    public UserRegistration updateUser(String emailId, String userName, long mobileNo) {
+    public UserDetails updateUser(String emailId, String userName, long mobileNo) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " updateUser() ", "Started");
         }
-        UserRegistration userRegistration = dao.getById(emailId);
+        UserDetails userRegistration = dao.getById(emailId);
         if (userName != null && mobileNo != 0) {
             userRegistration.setUserName(userName);
             userRegistration.setMobileNo(mobileNo);

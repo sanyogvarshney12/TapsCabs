@@ -1,7 +1,7 @@
 package com.travel.tapscabs.controller;
 
 import com.travel.tapscabs.logger.TapsCabsApplicationLogger;
-import com.travel.tapscabs.model.UserRegistration;
+import com.travel.tapscabs.model.UserDetails;
 import com.travel.tapscabs.service.IUserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +27,7 @@ public class UserRegistrationController implements IUserRegistrationController {
      * @return saved UserRegistration object
      */
     @Override
-    public ResponseEntity<UserRegistration> addUser(UserRegistration userRegistration) {
+    public ResponseEntity<UserDetails> addUser(UserDetails userRegistration) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " addUser()", " Started");
         }
@@ -40,7 +40,7 @@ public class UserRegistrationController implements IUserRegistrationController {
      * @return User registration object if exists, else UserDoesNotExistException
      */
     @Override
-    public ResponseEntity<UserRegistration> fetchUser(String emailId) {
+    public ResponseEntity<UserDetails> fetchUser(String emailId) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " fetchUser()", " Started");
         }
@@ -55,7 +55,7 @@ public class UserRegistrationController implements IUserRegistrationController {
      * @return updated saved UserRegistration object
      */
     @Override
-    public ResponseEntity<UserRegistration> updateUser(String emailId, String userName, long mobileNo) {
+    public ResponseEntity<UserDetails> updateUser(String emailId, String userName, long mobileNo) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " updateUser()", " Started");
         }
