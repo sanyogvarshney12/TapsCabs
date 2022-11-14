@@ -1,6 +1,6 @@
 package com.travel.tapscabs.controller;
 
-import com.travel.tapscabs.model.UserDetails;
+import com.travel.tapscabs.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 public interface IUserRegistrationController {
 
     @PostMapping("/register")
-    ResponseEntity<UserDetails> addUser(@RequestBody UserDetails userRegistration);
+    ResponseEntity<User> addUser(@RequestBody User userRegistration);
 
     @GetMapping("/register")
-    ResponseEntity<UserDetails> fetchUser(@RequestHeader("emailId") String emailId);
+    ResponseEntity<User> fetchUser(@RequestHeader("emailId") String emailId);
 
     @PatchMapping("/register")
-    ResponseEntity<UserDetails> updateUser(@RequestHeader("emailId") String emailId, @RequestParam("name") String userName, @RequestParam("mobileNo") long mobileNo);
+    ResponseEntity<User> updateUser(@RequestHeader("emailId") String emailId, @RequestParam("name") String userName, @RequestParam("mobileNo") long mobileNo);
 
 }

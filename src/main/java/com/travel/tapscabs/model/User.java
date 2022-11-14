@@ -1,6 +1,7 @@
 package com.travel.tapscabs.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,22 +11,26 @@ import java.util.List;
  * @version 1.0
  */
 @Entity
-public class UserDetails {
+public class User implements Serializable {
 
     @Id
+    private long mobileNo;
+    @Column(nullable = false)
     private String emailId;
     @Column(nullable = false)
     private String userName;
     @Column(nullable = false)
-    private long mobileNo;
-    @Column(nullable = false)
     private String password;
+    private String location;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
-            joinColumns = { @JoinColumn(name = "email_id", referencedColumnName = "emailId")},
+            joinColumns = { @JoinColumn(name = "mobile_no", referencedColumnName = "mobileNo")},
             inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id")}
     )
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Address> address;
+
     private List<Role> roles = new ArrayList<>();
 
     public String getEmailId() {

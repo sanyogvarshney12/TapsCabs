@@ -14,7 +14,7 @@ public class Role {
     @Column(nullable = false, unique = true)
     private String name;
     @ManyToMany(mappedBy = "roles")
-    private List<UserDetails> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -32,11 +32,11 @@ public class Role {
         this.name = name;
     }
 
-    public List<UserDetails> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<UserDetails> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }

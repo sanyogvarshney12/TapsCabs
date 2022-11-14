@@ -3,7 +3,7 @@ package com.travel.tapscabs.service;
 import com.travel.tapscabs.dao.IUserRegistrationDao;
 import com.travel.tapscabs.exception.UserDoesNotExistException;
 import com.travel.tapscabs.logger.TapsCabsApplicationLogger;
-import com.travel.tapscabs.model.UserDetails;
+import com.travel.tapscabs.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +29,7 @@ public class UserRegistrationServiceImpl implements IUserRegistrationService {
      * @return saved UserRegistration object
      */
     @Override
-    public UserDetails addUser(UserDetails userRegistration) {
+    public User addUser(User userRegistration) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " addUser() ", "Started");
         }
@@ -42,11 +42,11 @@ public class UserRegistrationServiceImpl implements IUserRegistrationService {
      * @return saved UserRegistration object if exists, else throws UserDoesNotExistException
      */
     @Override
-    public UserDetails fetchUser(String emailId) {
+    public User fetchUser(String emailId) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " fetchUser() ", "Started");
         }
-        UserDetails userRegistration = Optional.of(dao.getById(emailId))
+        User userRegistration = Optional.of(dao.getById(emailId))
                 .orElseThrow(() -> new UserDoesNotExistException(emailId, "This user does not exiust in the System."));
         return userRegistration;
     }
@@ -59,11 +59,11 @@ public class UserRegistrationServiceImpl implements IUserRegistrationService {
      * @return updated UserRegistration Object
      */
     @Override
-    public UserDetails updateUser(String emailId, String userName, long mobileNo) {
+    public User updateUser(String emailId, String userName, long mobileNo) {
         if (LOG.isInfoEnabled()) {
             LOG.info(CLASSNAME, " updateUser() ", "Started");
         }
-        UserDetails userRegistration = dao.getById(emailId);
+        User userRegistration = dao.getById(emailId);
         if (userName != null && mobileNo != 0) {
             userRegistration.setUserName(userName);
             userRegistration.setMobileNo(mobileNo);
